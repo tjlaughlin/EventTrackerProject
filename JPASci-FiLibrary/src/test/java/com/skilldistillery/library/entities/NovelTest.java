@@ -25,7 +25,7 @@ class NovelTest {
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("ScienceFictionLibraryPU");
+		emf = Persistence.createEntityManagerFactory("Sci-FiLibraryPU");
 		
 	}
 
