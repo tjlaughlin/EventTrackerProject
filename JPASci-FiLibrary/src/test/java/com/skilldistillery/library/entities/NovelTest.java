@@ -51,6 +51,8 @@ class NovelTest {
 		assertNotNull(novel);
 		assertEquals(1, novel.getId());
 		assertEquals("Dune", novel.getTitle());
+		assertEquals(1965, novel.getYearPublished());
+		
 		
 	}
 
