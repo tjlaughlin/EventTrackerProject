@@ -24,14 +24,12 @@ public class NovelController {
 
 	@Autowired
 	private NovelService svc;
-	
-	
-	
+
 //	@GetMapping("ping")
 //	public String ping() {
 //		return "pong";
 //	}
-	
+
 	@GetMapping("novels/{novelId}")
 	public Novel getNovel(@PathVariable Integer novelId, HttpServletResponse response, HttpServletRequest request) {
 		Novel novel = svc.getNovel(novelId);
@@ -40,12 +38,12 @@ public class NovelController {
 		}
 		return novel;
 	}
-	
+
 	@GetMapping("novels")
 	public List<Novel> getAllNovels() {
 		return svc.getAllNovels();
 	}
-	
+
 	@GetMapping("novels/subgenre/{subGenre}")
 	public List<Novel> getNovelsBySubGenre(@PathVariable String subGenre, HttpServletResponse response) {
 		List<Novel> novels = svc.novelsBySubgenre(subGenre);
@@ -54,7 +52,7 @@ public class NovelController {
 		}
 		return novels;
 	}
-	
+
 	@PostMapping("novels")
 	public Novel createNovel(@RequestBody Novel novel, HttpServletResponse response) {
 		Novel novelAdded = null;
@@ -65,11 +63,10 @@ public class NovelController {
 		} catch (Exception e) {
 			response.setStatus(404);
 		}
-		
+
 		return novelAdded;
 	}
-	
-	
+
 	@DeleteMapping("novels/delete/{novelId}")
 	public void deleteNovelFromLibrary(@PathVariable Integer novelId, HttpServletResponse response) {
 		if (svc.delete(novelId)) {
@@ -78,12 +75,12 @@ public class NovelController {
 			response.setStatus(404);
 		}
 	}
-	
+
 	@PutMapping("novels/{novelId}")
 	public Novel updateNovel(@RequestBody Novel novel, Integer novelId, HttpServletResponse response) {
 		try {
 			novel = svc.updateNovel(novelId, novel);
-			if(novel == null) {
+			if (novel == null) {
 				response.setStatus(404);
 			}
 		} catch (Exception e) {
@@ -91,21 +88,17 @@ public class NovelController {
 		}
 		return novel;
 	}
-	
-	
-	
-	
-	
+
 	@GetMapping("novels/search/{keyword}")
 	public List<Novel> getnNovelByKeyword(@PathVariable String keyword, HttpServletResponse response) {
 		String keyword2 = keyword;
 		String keyword3 = keyword;
-		List <Novel> novels = svc.keywordSearch("%" + keyword + "%", "%" + keyword2 + "%", "%" + keyword3 + "%");
-		
+		List<Novel> novels = svc.keywordSearch("%" + keyword + "%", "%" + keyword2 + "%", "%" + keyword3 + "%");
+
 //		if (novels == null) {
 //			response.setStatus(404);
 //		}
 		return novels;
-	
+
 	}
 }
