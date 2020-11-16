@@ -29,17 +29,11 @@
   |ReturnType    |Route                      |Functionality        |
   |--------------|---------------------------|---------------------|
   |List<Novel>   | Get api/novels            | gets all novels     |
-  |Novel         | Get api/novels/{id}       | gets a novel by id  |
-  |--------------|---------------------------|---------------------|
+  |Novel         | Get api/novels/{id}       | gets a novel by id  |  
   |Novel         | Post api/novels           | creates a new novels|
-  |--------------|---------------------------|---------------------|
   |Novel         | Put api/novels            | updates a novel     |
-  |--------------|---------------------------|---------------------|
-  |Void          | DELETE api/novels         | deletes a novel     |
-  |--------------|---------------------------|---------------------|
+  |Void          | DELETE api/novels         | deletes a novel     |  
   |List<Novel>   | Get api/search/novels     | searches for novels |
-  |              |                           | by keyword          |
-  |--------------|---------------------------|---------------------|
+  |              |                           | by keyword          |  
   |List<Novel>   | Get api/novels/{subgenre} | searches for novels |
   |              |                           | by subgenre         |
-  |--------------|---------------------------|---------------------|
