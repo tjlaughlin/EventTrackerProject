@@ -19,3 +19,18 @@
 ##How to run - Instructions
 - This application is not going to be deployed until after implementing javascript logic as well as structuring the front end user experience.
 - Most of the backend is finished and tested using postman to make sure the paths/methods and services are working properly.
+- Expected routes will include:
+  - Show novel by ID
+  - show all novels
+  - show novels by sub genre
+  - show novels by keyword search
+  - All of the basic CRUD functions will be applicable to this application
+
+  |ReturnType    |Route                    |Functionality        | 
+  |--------------|-------------------------|---------------------|
+  |List<Novel>   | Get api/novels          | gets all novels     |
+  |--------------|-------------------------|---------------------|  
+  |Novel         | Get api/novels/{id}     | gets all novels     |
+  |--------------|-------------------------|---------------------|
+  |Novel         | Post api/novels         | creates a new novels|
+  |--------------|-------------------------|---------------------|
