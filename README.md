@@ -26,7 +26,7 @@
   - show novels by keyword search
   - All of the basic CRUD functions will be applicable to this application
 
-  |ReturnType    |Route                    |Functionality        |
+  |ReturnType    |Route                      |Functionality        |
   |--------------|---------------------------|---------------------|
   |List<Novel>   | Get api/novels            | gets all novels     |
   |--------------|---------------------------|---------------------|  
