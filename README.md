@@ -29,7 +29,6 @@
   |ReturnType    |Route                      |Functionality        |
   |--------------|---------------------------|---------------------|
   |List<Novel>   | Get api/novels            | gets all novels     |
-  |--------------|---------------------------|---------------------|  
   |Novel         | Get api/novels/{id}       | gets a novel by id  |
   |--------------|---------------------------|---------------------|
   |Novel         | Post api/novels           | creates a new novels|
