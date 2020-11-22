@@ -6,8 +6,45 @@
 </head>
 <body>
 <h1>Tj's Sci-Fi Library</h1>
+<form name="novelForm">
+    <input type="text" name="search">
+    <button name="submit">Search</button>
+</form>
+<br>
+<form name="deleteNovelForm">
+    <input type="number" name="novelId" placeholder="Novel id number">
+    <button type = 'submit' name="deleteNovelButton">Delete</button>
+</form>
+<br>
 
+<form name="newNovelForm">
+    <input type="text" name="title" placeholder="Title"> <br>
+    <input type="text" name="author" placeholder="Author"> <br>
+    <input type="number" name="yearPublished" placeholder="Year Published"> <br>
+    <input type="text" name="numberOfChapters" placeholder="Number of chapters"> <br>
+    <input type="text" name="description" placeholder="Description"> <br>
+    <input type="text" name="subGenre" placeholder="Sub-Genre"> <br>
+    <input type="text" name="coverImageUrl" placeholder="Cover image url"> <br>
+    
+    <button type="submit" name="addNovelButton">Add Novel</button>
+  </form>
+<br>
+  <form name="updateNovelForm">
+    <input type="number" name="id" placeholder="Film ID"> <br>
+    <input type="text" name="title" placeholder="Film Title"> <br>
+    <input type="text" name="author" placeholder="Author"> <br>
+    <input type="number" name="yearPublished" placeholder="Year Published"> <br>
+    <input type="text" name="numberOfChapters" placeholder="Number of chapters"> <br>
+    <input type="text" name="description" placeholder="Description"> <br>
+    <input type="text" name="subGenre" placeholder="Sub-Genre"> <br>
+    <input type="text" name="coverImageUrl" placeholder="Cover image url"> <br>
+    
+    <button type="submit" name="updateNovelButton">Update Novel</button>
+  </form>
+  <br>
+  <br>
 
+<div id = 'novelsByKeyword'></div>
+
+<div id = 'novelData'></div>
 <script type="text/javascript" src = 'js/eventTracker.js'></script>
-</body>
-</html>

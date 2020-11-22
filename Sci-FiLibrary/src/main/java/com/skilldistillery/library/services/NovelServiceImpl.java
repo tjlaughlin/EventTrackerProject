@@ -86,6 +86,7 @@ public class NovelServiceImpl implements NovelService {
 			oldNovel.setYearPublished(novel.getYearPublished());
 			}
 		}
+		repo.saveAndFlush(oldNovel);
 		return oldNovel;
 	}
 

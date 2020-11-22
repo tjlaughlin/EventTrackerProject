@@ -25,10 +25,10 @@ public class NovelController {
 	@Autowired
 	private NovelService svc;
 
-	@GetMapping("ping")
-	public String ping() {
-		return "pong";
-	}
+//	@GetMapping("ping")
+//	public String ping() {
+//		return "pong";
+//	}
 
 	@GetMapping("novels/{novelId}")
 	public Novel getNovel(@PathVariable Integer novelId, HttpServletResponse response, HttpServletRequest request) {
@@ -70,6 +70,7 @@ public class NovelController {
 	@DeleteMapping("novels/delete/{novelId}")
 	public void deleteNovelFromLibrary(@PathVariable Integer novelId, HttpServletResponse response) {
 		if (svc.delete(novelId)) {
+			System.out.println("in delete controller");
 			response.setStatus(204);
 		} else {
 			response.setStatus(404);
@@ -77,10 +78,14 @@ public class NovelController {
 	}
 
 	@PutMapping("novels/{novelId}")
-	public Novel updateNovel(@RequestBody Novel novel, Integer novelId, HttpServletResponse response) {
+	public Novel updateNovel(@RequestBody Novel novel, @PathVariable Integer novelId, HttpServletResponse response) {
 		try {
 			novel = svc.updateNovel(novelId, novel);
+			System.out.println("**********");
+			System.out.println(novel);
+			System.out.println("**********");
 			if (novel == null) {
+				
 				response.setStatus(404);
 			}
 		} catch (Exception e) {
@@ -90,7 +95,7 @@ public class NovelController {
 	}
 
 	@GetMapping("novels/search/{keyword}")
-	public List<Novel> getnNovelByKeyword(@PathVariable String keyword, HttpServletResponse response) {
+	public List<Novel> getNovelByKeyword(@PathVariable String keyword, HttpServletResponse response) {
 		String keyword2 = keyword;
 		String keyword3 = keyword;
 		List<Novel> novels = svc.keywordSearch("%" + keyword + "%", "%" + keyword2 + "%", "%" + keyword3 + "%");
