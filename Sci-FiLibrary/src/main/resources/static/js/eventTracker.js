@@ -1,6 +1,7 @@
 window.addEventListener('load', function(){
 console.log('Script loaded')
 init();
+aggregate();
 });
 
 
@@ -70,7 +71,7 @@ function displayError(msg) {
 function displayNovels(novels) {
 
     
-    
+   
     var dataDiv = document.getElementById('novelData');
     dataDiv.textContent = '';
     var newTable = document.createElement('table');
@@ -113,7 +114,9 @@ function displayNovels(novels) {
     let tableBody = document.createElement('tbody');
     
     for (let i = 0; i < novels.length; i++) {
+            
             let newRow = document.createElement('tr');
+            
             let novelId = document.createElement('td');
             let titleName = document.createElement('td');
             let authorName = document.createElement('td');
@@ -134,8 +137,10 @@ function displayNovels(novels) {
             coverImage.textContent = ' ';
             editButton.textContent = 'Edit';
             editButton.name = 'editButton';
+            editButton.id = novels[i].id;
             deleteButton.textContent = 'Delete';
             deleteButton.name = 'deleteButton';
+            deleteButton.id = novels[i].id;
             newRow.appendChild(novelId);
             newRow.appendChild(titleName);
             newRow.appendChild(authorName);
@@ -148,43 +153,84 @@ function displayNovels(novels) {
             newRow.appendChild(deleteButton);
             tableBody.appendChild(newRow);
             newTable.appendChild(tableBody);
-        
+            editButton.addEventListener('click', function(e) {
+                let novelId = editButton.id;
+                getNovelById(novelId);
+        });
     } dataDiv.appendChild(newTable);
-
-
-
-    // document.dataDiv.editButton.addEventListener('click', function(e) {
-
-    //     putEditNovel(e);
-    // }) 
-
-
-
-}
-
-function displayNovel(novel) {
+    var totalNumChp = 0;
+    var avgNumChp;
+    var counter = 0;
+for (let i = 0; i < novels.length; i++) {
+    totalNumChp += novels[i].numberOfChapters;
+    counter++;
     
-    console.log(novel);
-    console.log('*************')
-    let dataDiv = document.getElementById('novelData');
-    dataDiv.textContent = '';
-    let h3 = document.createElement('h3');
-    h3.textContent = novel.title;
-    dataDiv.appendChild(h3);
-    for (var p in novel) {
-        if (p !== 'title') {
-            console.log(p.value);
-            let ul = document.createElement('ul');
-            let li = document.createElement('li');
-            li.textcontent = p.value;
-            ul.appendChild(li);
-        };
-    }
-    dataDiv.appendChild(ul);
+    
+}
+avgNumChp = totalNumChp / counter;
+let aggDiv = document.getElementById('aggregateDataDiv');
+aggDiv.textContent = 'Average number chapters per novel' + ' '  + Math.floor(avgNumChp);
+
+
+
+   
 
 
 
 }
+
+function getNovelById(novelId) {
+    
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', 'api/novels/' + novelId);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                let novelJSON = xhr.responseText;
+                let novel = JSON.parse(novelJSON);
+                editNovel(novel);
+            }
+        } 
+        // else {
+        //     console.error('novels are not able to be displayed');
+        //     displayError('cannot find novels by that id number');
+        // }
+    };
+    xhr.send();
+    };
+
+
+
+    function editNovel(novel) {
+        let editDiv = document.getElementById('editNovelDiv');
+        let editform = document.createElement('form');
+
+        for(var p in novel) {
+            let input = document.createElement('input');
+            input.type = 'text';
+            input.name = p + '';
+            editform.appendChild(input);
+            // console.log(novel[p]);
+           
+        }
+        
+        editDiv.append(editForm);
+        
+    // console.log(novel);
+    // console.log('*************');
+
+
+    // let dataDiv = document.getElementById('novelData');
+    // let ul = document.createElement('ul');
+    // dataDiv.textContent = '';
+
+    // dataDiv.appendChild(h3);
+  
+    // dataDiv.appendChild(ul);
+
+
+
+};
 
 
 
@@ -292,7 +338,7 @@ function deleteNovel(e) {
         else {
           console.error('Error deleting film, status=' + xhr.status);
           console.error(xhr.responseText);
-          displayError('in else statement.');
+          displayError('Failed to delete Novel');
         }
       }
     };
@@ -301,43 +347,73 @@ xhr.send(null);
 
 };
 
-function updateNovel(novelId) {
+// function updateNovel(novelId) {
     
-    let form = document.updateNovelForm;
-    let updatedNovel = {
-        // id: form.id.value,
-        title: form.title.value,
-        author: form.author.value,
-        yearPublished : form.yearPublished.value,
-        numberOfChapters : form.numberOfChapters.value,
-        description : form.description.value,
-        subGenre : form.subGenre.value,
-        coverImageUrl : form.coverImageUrl.value
-    };
-    let xhr = new XMLHttpRequest();
-    xhr.open('PUT', 'api/novels/' + novelId);
-    xhr.onreadystatechange = function(){
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                let novel = JSON.parse(xhr.responseText);
+//     let form = document.updateNovelForm;
+//     let updatedNovel = {
+//         // id: form.id.value,
+//         title: form.title.value,
+//         author: form.author.value,
+//         yearPublished : form.yearPublished.value,
+//         numberOfChapters : form.numberOfChapters.value,
+//         description : form.description.value,
+//         subGenre : form.subGenre.value,
+//         coverImageUrl : form.coverImageUrl.value
+//     };
+//     let xhr = new XMLHttpRequest();
+//     xhr.open('PUT', 'api/novels/' + novelId);
+//     xhr.onreadystatechange = function(){
+//         if (xhr.readyState === 4) {
+//             if (xhr.status === 200) {
+//                 let novel = JSON.parse(xhr.responseText);
                 
-                console.log(novel);
-                init();
+//                 console.log(novel);
+//                 init();
 
                 
-        }
-        else {
-          console.error('Error updating film, status=' + xhr.status);
-          console.error(xhr.responseText);
-          displayError('in else statement.');
-        }
-      }
-    };
-    xhr.setRequestHeader('Content-type','application/json')
-    xhr.send(JSON.stringify(updatedNovel));
+//         }
+//         else {
+//           console.error('Error updating film, status=' + xhr.status);
+//           console.error(xhr.responseText);
+//           displayError('in else statement.');
+//         }
+//       }
+//     };
+//     xhr.setRequestHeader('Content-type','application/json')
+//     xhr.send(JSON.stringify(updatedNovel));
 
-};
+// };
 
+// function aggregate() {
+// var novels;
+// let aggDiv = document.getElementById('aggregateDataDiv');
+//     let xhr = new XMLHttpRequest();
+// xhr.open('GET', 'api/novels');
+// xhr.onreadystatechange = function() {
+    
+
+//     if (xhr.readyState === 4) {
+//         if (xhr.status === 200) {
+//             let novelsJSON = xhr.responseText;
+//             novels = JSON.parse(novelsJSON);
+            
+            
+            
+//         }
+//     } else {
+//         console.error('novels are not able to be displayed');
+//         displayError('novels are not able to be displayed');
+//     }
+// };
+// xhr.send();
+// console.log(novels);
+// let avgNumberOfChp; 
+// for (let i = 0; i < novels.length; i++) {
+//     console.log(novels[i].numberOfChapters);
+//     // aggDiv.appendChild()
+// }
+
+// }
 
 
 
