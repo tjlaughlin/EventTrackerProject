@@ -169,7 +169,7 @@ for (let i = 0; i < novels.length; i++) {
 }
 avgNumChp = totalNumChp / counter;
 let aggDiv = document.getElementById('aggregateDataDiv');
-aggDiv.textContent = 'Average number chapters per novel' + ' '  + Math.floor(avgNumChp);
+aggDiv.textContent = 'Average number of chapters per novel' + ' '  + Math.floor(avgNumChp);
 
 
 
