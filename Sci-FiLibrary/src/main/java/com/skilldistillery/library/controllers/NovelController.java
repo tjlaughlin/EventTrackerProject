@@ -25,10 +25,10 @@ public class NovelController {
 	@Autowired
 	private NovelService svc;
 
-//	@GetMapping("ping")
-//	public String ping() {
-//		return "pong";
-//	}
+	@GetMapping("ping")
+	public String ping() {
+		return "pong";
+	}
 
 	@GetMapping("novels/{novelId}")
 	public Novel getNovel(@PathVariable Integer novelId, HttpServletResponse response, HttpServletRequest request) {
@@ -106,4 +106,6 @@ public class NovelController {
 		return novels;
 
 	}
+	
+	
 }
