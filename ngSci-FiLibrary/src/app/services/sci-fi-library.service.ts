@@ -3,12 +3,15 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Novel } from '../models/novel.model';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SciFiLibraryService {
-  private  baseUrl = 'http://localhost:8085/';
+  // private  baseUrl = 'http://localhost:8085/';
+  // private  baseUrl = '/Sci-FiLibrary/';
+  private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/novels';
 
   index(): Observable<Novel[]> {

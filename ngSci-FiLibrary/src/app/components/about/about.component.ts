@@ -35,7 +35,7 @@ export class AboutComponent implements OnInit {
       }
     );
 
-    // window.location.reload();
+
   }
 
 
