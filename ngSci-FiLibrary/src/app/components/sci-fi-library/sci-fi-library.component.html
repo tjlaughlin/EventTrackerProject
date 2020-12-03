@@ -1,9 +1,6 @@
-<div>
-<form>
-  <input type="text" name="keyword" >
-  <button class="btn btn-primary" (click)="search(keyword)">Search</button>
-</form>
-</div>
+
+
+
 
 <div *ngIf="searchDiv">
   <table class="table">
@@ -42,8 +39,9 @@
   <br>
   <br>
   <br>
-  <button (click)="selected = null">Back to novels</button>
-  <button (click)="update = !update">Update</button>
+  <button class="btn btn-outline-dark" (click)="selected = null">Back to novels</button>
+  <button class="btn btn-outline-dark" (click)="update = !update">Update</button>
+  <button class="btn btn-outline-dark" (click)="deleteNovel(selected.id)">Delete novel</button>
   <div  class="container" *ngIf="update">
     <form >
       <input  type="text" name="title" [(ngModel)]="selected.title"><br>
@@ -53,11 +51,11 @@
       <input  type="text" name="numberOfChapters" [(ngModel)]="selected.numberOfChapters"><br>
       <input  type="text" name="description" [(ngModel)]="selected.description"><br>
       <input  type="text" name="subGenre" [(ngModel)]="selected.subGenre"><br>
-      <button (click)="updateNovel(selected.id, selected)">Update Novel</button>
+      <button class="btn btn-outline-dark" (click)="updateNovel(selected.id, selected)">Update Novel</button>
     </form>
   </div>
-  <button (click)="deleteNovel(selected.id)">Delete novel</button>
 </div>
+<br><br><br>
 
 <div class="container-fluid" *ngIf="!selected && !add && !searchDiv">
 <table class="table table-striped">
@@ -78,7 +76,7 @@
     </tr>
   </tbody>
 </table><br>
-<button (click)="add = true">add novel</button>
+<button class="btn btn-outline-dark" (click)="add = true">add novel</button>
 <br>
 <br>
 <br>
@@ -95,7 +93,7 @@
   <input  type="text" name="numberOfChapters" placeholder="Number Of Chapters" [(ngModel)]="newNovel.numberOfChapters"><br>
   <input  type="text" name="description" placeholder="Description" [(ngModel)]="newNovel.description"><br>
   <input  type="text" name="subGenre" placeholder="Sub genre " [(ngModel)]="newNovel.subGenre"><br>
-  <button (click)="addNovel(newNovel) && selected = null && add = null">Add novel</button>
+  <button class="btn btn-outline-dark" (click)="addNovel(newNovel) && selected = null && add = null">Add novel</button>
 </form>
 <div>
 

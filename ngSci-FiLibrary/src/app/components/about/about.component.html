@@ -1,1 +1,27 @@
-<h1>About Page</h1>
+
+<!-- <form>
+  <input class="form-control" type="text" name="keyword" >
+  <button class="btn btn-outline-dark" (click)="search(keyword)">Search</button>
+</form> -->
+<br>
+<br>
+<br>
+<div class="container-fluid" style="align: center" >
+  <form >
+    <input  type="text" name="title" placeholder="Title" [(ngModel)]="newNovel.title"><br>
+
+    <input  type="text" name="author" placeholder="Author" [(ngModel)]="newNovel.author"><br>
+
+    <input  type="text" name="yearPublished" placeholder="Year Published" [(ngModel)]="newNovel.yearPublished"><br>
+
+    <input  type="text" name="coverImageUrl" placeholder="Cover image URL" [(ngModel)]="newNovel.coverImageUrl"><br>
+
+    <input  type="text" name="numberOfChapters" placeholder="Number Of Chapters" [(ngModel)]="newNovel.numberOfChapters"><br>
+
+    <input  type="text" name="description" placeholder="Description" [(ngModel)]="newNovel.description"><br>
+
+    <input  type="text" name="subGenre" placeholder="Sub genre " [(ngModel)]="newNovel.subGenre"><br>
+
+    <button class="btn btn-outline-dark" (click)="addNovel(newNovel)">Add novel</button>
+  </form>
+  <div>
